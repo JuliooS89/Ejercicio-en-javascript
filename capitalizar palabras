@@ -1,0 +1,35 @@
+function capitalizarPalabras(texto) {
+  let textoCapitalizado = "";
+  let textoComoArreglo = texto.split(" ");
+
+  for (let i = 0; i < textoComoArreglo.length; i++) {
+    let palabraComoArreglo = textoComoArreglo[i].split("");
+    for (let j = 0; j < palabraComoArreglo.length; j++) {
+      if (
+        j === 0 &&
+        palabraComoArreglo[j] >= "a" &&
+        palabraComoArreglo[j] <= "z"
+      ) {
+        textoCapitalizado += palabraComoArreglo[j].toUpperCase();
+      } else if (
+        (j === 0 && palabraComoArreglo[j].charCodeAt(0) < 48) || //codicion que evalúa si el elemento es un caracter especial
+        palabraComoArreglo[j] > 122
+      ) {
+        textoCapitalizado += palabraComoArreglo[j];
+        textoCapitalizado += palabraComoArreglo[j + 1].toUpperCase();
+        j++;
+      } else {
+        textoCapitalizado += palabraComoArreglo[j];
+      }
+    }
+    textoCapitalizado += " ";
+  }
+  return textoCapitalizado;
+}
+let texto = `la Torre Eiffel es un icónico monumento situado en el centro de París, francia. 
+fue construida para la Exposición Universal de 1889, que celebraba el centenario de la Revolución Francesa. 
+Diseñada por el ingeniero Gustave Eiffel, la torre de hierro forjado de 324 metros de altura fue en su momento 
+la estructura más alta del mundo. Aunque al principio fue criticada por algunos como un "monstruo de hierro", 
+hoy en día es uno de los símbolos más reconocidos de Francia y atrae a millones de visitantes cada año.`;
+
+console.log(capitalizarPalabras(texto));
